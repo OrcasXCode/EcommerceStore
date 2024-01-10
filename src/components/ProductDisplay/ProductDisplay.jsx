@@ -6,6 +6,9 @@ export function ProductDisplay() {
     const {id} = useParams()
     const [singleProduct,setsingleProduct]=useState([]);
     const [cart,setCart]=useState(1)
+    const [Size,setSize]=useState(null)
+    const [ShowSize,setShowSize]=useState(false);
+    const discprice=singleProduct.price+20
 
 
     function addCart(){
@@ -18,6 +21,17 @@ export function ProductDisplay() {
             setCart(cart-1)
         }
     }
+
+    useEffect(()=>{
+        function showSize(){
+            if(singleProduct.category==="men's clothing" || singleProduct.category==="women's clothing"){
+                setShowSize(true);
+            }
+        }
+        showSize();
+        console.log(ShowSize)
+    },[singleProduct.category])
+    
 
     useEffect(()=>{
         const productdetails=async()=>{
@@ -85,46 +99,36 @@ export function ProductDisplay() {
                     {singleProduct.price} $
                   </div>
                   <span className="font-segoe pl-2 text-sm text-gray-400 line-through md:text-base lg:text-lg xl:text-xl">
-                    {singleProduct.price+20}  $
+                   
+                    {discprice.toFixed(2)}  $
                   </span>
                 </div>
               </div>
-              <div className="border-b border-gray-300 pb-3  ">
-                <div className="mb-4">
+              
+                
+                  
+                 {ShowSize===true ? (<div className="border-b border-gray-300 pb-3  "><div className="mb-4">
                   <h3 className="text-heading mb-2.5 text-base font-semibold capitalize md:text-lg">
                     size
-                  </h3>
-                  <ul className="colors -mr-3 flex flex-wrap">
+                  </h3><ul className="colors -mr-3 flex flex-wrap">
                     {['S', 'M', 'L', 'XL'].map((size) => (
                       <li
                         key={size}
-                        className="text-heading mb-2 mr-2 flex h-9 w-9 cursor-pointer items-center justify-center rounded border border-gray-100 p-1 text-xs font-semibold uppercase transition duration-200 ease-in-out hover:border-black md:mb-3 md:mr-3 md:h-11 md:w-11 md:text-sm "
-                      >
-                        {size}
+                        onClick={()=>{
+                            setSize(size)
+                        }}
+                        className={`text-heading mb-2 mr-2 flex h-9 w-9 cursor-pointer items-center justify-center rounded border p-1 text-xs font-semibold uppercase transition duration-200 ease-in-out ${
+                            Size === size
+                              ? 'border-black' 
+                              : 'border-gray-100 hover:border-black'
+                          } md:mb-3 md:mr-3 md:h-11 md:w-11 md:text-sm `}>
+                        {size}    
                       </li>
                     ))}
-                  </ul>
-                </div>
-                <div className="mb-4 ">
-
-
-                  {/* <h3 className="text-heading mb-2.5 text-base font-semibold capitalize md:text-lg">
-                    color
-                  </h3> */}
-                  {/* <ul className="colors -mr-3 flex flex-wrap">
-                    {['bg-orange-400', 'bg-pink-400', 'bg-violet-600', 'bg-red-500'].map((color) => (
-                      <li
-                        key={color}
-                        className="text-heading mb-2 mr-2 flex h-9 w-9 cursor-pointer items-center justify-center rounded border border-gray-100 p-1 text-xs font-semibold uppercase transition duration-200 ease-in-out hover:border-black md:mb-3 md:mr-3 md:h-11 md:w-11 md:text-sm"
-                      >
-                        <span className={`block h-full w-full rounded ${color}`} />
-                      </li>
-                    ))}
-                  </ul> */}
-
-
-                </div>
-              </div>
+                  </ul> </div> </div>) : null}
+               
+                
+             
               <div className="space-s-4 3xl:pr-48 flex items-center gap-2 border-b border-gray-300 py-8  md:pr-32 lg:pr-12 2xl:pr-32">
                 <div className="group flex h-11 flex-shrink-0 items-center justify-between overflow-hidden rounded-md border border-gray-300 md:h-12">
                   <button
