@@ -16,7 +16,7 @@ export function Products(props) {
         };
 
         fetchData();
-    }, []); // The empty dependency array ensures this effect runs only once when the component mounts
+    }, []); 
 
 
     
@@ -32,9 +32,9 @@ export function Products(props) {
             />
             <div className="p-4">
               <h1 className="inline-flex items-center text-lg font-semibold">{product.title}</h1>
-              <p className="mt-3 text-sm text-gray-600">
+              {/* <p className="mt-3 text-sm text-gray-600">
                 {product.description}
-              </p>
+              </p> */}
               <div className="mt-4">
                 <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
                   #Sneakers
@@ -68,7 +68,7 @@ export function Products(props) {
                 type="button"
                 className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               >
-                Add to Cart
+                Shop Now
               </button>
             </div>
           </div>

@@ -8,6 +8,8 @@ import { Products } from './components/Products/Products.jsx'
 import Home from './components/Home/Home.jsx'
 import { ContactUs } from './components/ContactUs/ContactUs.jsx'
 import { About } from './components/About/About.jsx'
+import { Login } from './components/Login/Login.jsx'
+import { SignUp } from './components/SignUp/SignUp.jsx'
 
 
 const router=createBrowserRouter([
@@ -30,6 +32,14 @@ const router=createBrowserRouter([
       {
         path:"about",
         element:<About></About>
+      },
+      {
+        path:"login",
+        element:<Login></Login>
+      },
+      {
+        path:"signup",
+        element:<SignUp></SignUp>
       }
     ]
   }
