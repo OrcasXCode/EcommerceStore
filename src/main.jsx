@@ -10,6 +10,7 @@ import { ContactUs } from './components/ContactUs/ContactUs.jsx'
 import { About } from './components/About/About.jsx'
 import { Login } from './components/Login/Login.jsx'
 import { SignUp } from './components/SignUp/SignUp.jsx'
+import { ProductDisplay } from './components/ProductDisplay/ProductDisplay.jsx'
 
 
 const router=createBrowserRouter([
@@ -26,6 +27,10 @@ const router=createBrowserRouter([
         element:<Products></Products>
       },
       {
+        path:"/productdisplay/:id",
+        element: <ProductDisplay></ProductDisplay>
+      },
+      {
         path:"contactus",
         element:<ContactUs></ContactUs>
       },
@@ -40,6 +45,10 @@ const router=createBrowserRouter([
       {
         path:"signup",
         element:<SignUp></SignUp>
+      },
+      {
+        path:'productdisplay',
+        element:<ProductDisplay></ProductDisplay>
       }
     ]
   }
