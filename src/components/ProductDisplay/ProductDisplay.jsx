@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export function ProductDisplay() {
     
     const {id} = useParams()
     const [singleProduct,setsingleProduct]=useState([]);
-    const [cart,setCart]=useState(1)
+    const [quantity,setQuantity]=useState(1)
     const [Size,setSize]=useState(null)
     const [ShowSize,setShowSize]=useState(false);
     const discprice=singleProduct.price+20
 
+   
 
-    function addCart(){
-        if(cart<10){
-            setCart(cart+1)
+    function addQuanity(){
+        if(quantity<10){
+            setQuantity(quantity+1)
         }
     }
-    function minusCart(){
-        if(cart>1){
-            setCart(cart-1)
+    function minusQuantity(){
+        if(quantity>1){
+            setQuantity(quantity-1)
         }
     }
 
@@ -133,25 +134,27 @@ export function ProductDisplay() {
                 <div className="group flex h-11 flex-shrink-0 items-center justify-between overflow-hidden rounded-md border border-gray-300 md:h-12">
                   <button
                     className="text-heading hover:bg-heading flex h-full w-10 flex-shrink-0 items-center justify-center border-e border-gray-300 transition duration-300 ease-in-out focus:outline-none md:w-12"
-                    onClick={()=>addCart()}
+                    onClick={()=>addQuanity()}
                   >
                     +
                   </button>
                   <span className="duration-250 text-heading flex h-full w-12  flex-shrink-0 cursor-default items-center justify-center text-base font-semibold transition-colors ease-in-out  md:w-20 xl:w-24">
-                    {cart}
+                    {quantity}
                   </span>
                   <button className="text-heading hover:bg-heading flex h-full w-10 flex-shrink-0 items-center justify-center border-s border-gray-300 transition duration-300 ease-in-out focus:outline-none md:w-12"
-                  onClick={()=>minusCart()}>
-                    
+                  onClick={()=>minusQuantity()}>
                     -
                   </button>
                 </div>
+                <Link to={`/cart/${singleProduct.id}`}>
                 <button
                   type="button"
                   className="h-11 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 >
                   Add to cart
                 </button>
+                </Link>
+               
               </div>
               <div className="py-6 ">
                 <ul className="space-y-5 pb-1 text-sm">

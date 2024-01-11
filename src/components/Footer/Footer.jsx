@@ -13,6 +13,7 @@ export default function Footer() {
                                 src={Logo}
                                 className="mr-3 h-16"
                                 alt="Logo"
+                                style={{height:'100px'}}
                             />
                         </Link>
                     </div>

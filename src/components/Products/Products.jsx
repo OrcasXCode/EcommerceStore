@@ -12,6 +12,7 @@ export function Products(props) {
                 const response = await fetch('https://fakestoreapi.com/products');
                 const data = await response.json();
                 setProducts(data);
+                console.log(data)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -19,7 +20,7 @@ export function Products(props) {
 
         fetchData();
     }, []); 
-
+   
     
 
     return (
@@ -35,7 +36,7 @@ export function Products(props) {
               />
               <div className="p-4">
                 <h1 className="inline-flex items-center text-lg font-semibold">{product.title}</h1>
-           
+              
                 <Link to={`/productdisplay/${product.id}`}>
                   <button
                     onClick={(e)=>{

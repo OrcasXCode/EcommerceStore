@@ -11,6 +11,7 @@ import { About } from './components/About/About.jsx'
 import { Login } from './components/Login/Login.jsx'
 import { SignUp } from './components/SignUp/SignUp.jsx'
 import { ProductDisplay } from './components/ProductDisplay/ProductDisplay.jsx'
+import { Cart } from './components/Cart/Cart.jsx'
 
 
 const router=createBrowserRouter([
@@ -49,6 +50,14 @@ const router=createBrowserRouter([
       {
         path:'productdisplay',
         element:<ProductDisplay></ProductDisplay>
+      },
+      {
+        path:"/cart/:id",
+        element: <Cart></Cart>
+      },
+      {
+        path:'cart',
+        element:<Cart></Cart>
       }
     ]
   }
