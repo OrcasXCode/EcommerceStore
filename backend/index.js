@@ -4,6 +4,7 @@ const PORT=process.env.PORT || 3000
 const dotenv=require("dotenv")
 const database=require("./config/database")
 const cartRoutes=require("./routes/ViewCart")
+const userRoutes=require("./routes/user")
 const cookieParser=require("cookie-parser")
 const bodyParser=require("body-parser")
 const cors=require("cors")
@@ -19,6 +20,7 @@ database.connect();
 
 
 app.use("/api/v1/cart",cartRoutes)
+app.use("/api/v1/user",userRoutes)
 
 
 
