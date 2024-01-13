@@ -1,6 +1,9 @@
 const mongoose=require("mongoose")
 
 const CartItemSchema=new mongoose.Schema({
+    productId:{
+        type:Number
+    },
     title:{
         type:String,
     },

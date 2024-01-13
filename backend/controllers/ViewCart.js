@@ -4,19 +4,26 @@ const CartItem = require("../models/ViewCart");
 
 async function createCartItems(req,res){
     try{
+        const productId=req.body.productId;
         const title=req.body.title;
         const price=req.body.price;
         const discount=req.body.discount;
         const discountedPrice=req.body.discountedPrice;
         const quantity=req.body.quantity;
-        const imageSrc=req.body.image.src
+        // const imageSrc=req.body.image.src;
+        //use this if your format is this
+        // "image":{
+        //     "src": "https://images.pexels.com/photos/18489099/pexels-photo-18489099/free-photo-of-man-in-white-shirt-with-book-in-hands.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+        // }
+        const imageSrc=req.body.image;
+        
 
         const addInCart=await CartItem.create({
+            productId,
             title,
             price,
             discount,
             discountedPrice,
-            // image:image.secure_url
             image: imageSrc,
             quantity
         })
@@ -24,7 +31,16 @@ async function createCartItems(req,res){
         res.status(200).json({
             success:true,
             msg:"Item added in cart successfully",
-            data:addInCart
+            data:addInCart,
+            productDetails: {
+                productId,
+                title,
+                price,
+                discount,
+                discountedPrice,
+                image: imageSrc,
+                quantity
+            }
         })
 
     }
