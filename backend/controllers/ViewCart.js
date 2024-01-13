@@ -73,5 +73,29 @@ async function getAllCartItems(req,res){
 }
 
 
-module.exports={createCartItems,getAllCartItems}
+async function deleteCartItem(req,res){
+    try{
+        const itemId = req.body.id;
+        const deleteCart=await CartItem.findByIdAndDelete({
+            _id:itemId
+        })
+
+        res.status(200).json({
+            success:true,
+            msg:"Item deleted successfully",
+            data:deleteCart
+        })
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({
+            success:false,
+            msg:"Server Error failed to delete the item"
+
+        })
+    }
+}
+
+
+module.exports={createCartItems,getAllCartItems,deleteCartItem}
 //router.post requries a call back function
