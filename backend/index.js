@@ -8,6 +8,7 @@ const userRoutes=require("./routes/user")
 const cookieParser=require("cookie-parser")
 const bodyParser=require("body-parser")
 const cors=require("cors")
+const contactusRoutes=require("./routes/contactUs")
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
@@ -21,6 +22,7 @@ database.connect();
 
 app.use("/api/v1/cart",cartRoutes)
 app.use("/api/v1/user",userRoutes)
+app.use("/api/v1/contact",contactusRoutes)
 
 
 
