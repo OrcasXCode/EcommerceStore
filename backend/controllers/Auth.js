@@ -17,6 +17,16 @@ async function Signup(req,res){
             })
         }
 
+        const findEmail=await User.findOne({
+            email:email
+        })
+        if(findEmail){
+            return res.status(409).json({
+                status:'false',
+                msg:"User already exists"
+            })
+        }
+
         const hashedPassword=await bcrypt.hash(password,10);
 
         const newUser=await User.create({
@@ -44,7 +54,6 @@ async function Login(req,res){
     try{
         const email=req.body.email;
         const password=req.body.password;
-        // console.log(password)
         
         if(!email || !password){
             return res.status(404).json({
@@ -59,15 +68,15 @@ async function Login(req,res){
         if(!userLogin){
             return res.status(404).json({
                 status:'false',
-                msg:"User id is wrong"
+                msg:"User is not yet signed up"
             })
         }
         
         
         const pass = await bcrypt.compare(password, userLogin.password);
-        console.log('Entered password:', password);
-        console.log('Stored password:', userLogin.password);
-        console.log('Password comparison result:', pass);
+        // console.log('Entered password:', password);
+        // console.log('Stored password:', userLogin.password);
+        // console.log('Password comparison result:', pass);
 
         if(!pass){
             const token=jwt.sign({email:userLogin.email},process.env.JWT_SECRET,{expiresIn:'24h'});
