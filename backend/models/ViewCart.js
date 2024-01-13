@@ -1,17 +1,17 @@
 const mongoose=require("mongoose")
 
-const ViewCartSchema=new mongoose.Schema({
+const CartItemSchema=new mongoose.Schema({
     title:{
         type:String,
     },
     price:{
         type:Number,
     },
-    DiscountedPrice:{
+    discountedPrice:{
         type:Number
     },
     Discount:{
-        type:String,
+        type:Number,
     },
     quantity:{
         type:Number,
@@ -21,7 +21,7 @@ const ViewCartSchema=new mongoose.Schema({
     }
 })
 
-const ViewCart=mongoose.model("ViewCart",ViewCartSchema)
-module.exports=ViewCart
+const CartItem=mongoose.model("CartItem",CartItemSchema)
+module.exports=CartItem
 //imp
 // ViewCart.create is not a function
