@@ -14,26 +14,26 @@ export function Cart(props) {
     
     // total: This is the accumulator, which accumulates the result of each iteration.
     // cartItem: This is the current element being processed in the array during each iteration.
-    function addQuantity(cartItem) {
-      if (cartItem.quantity < 10) {
-        // Update the quantity for the specific item
-        setCartItem((prevCartItems) =>
-          prevCartItems.map((item) =>
-            item.id === cartItem.id ? { ...item, quantity: item.quantity + 1 } : item
-          )
-        );
-      }
-    }
-    function minusQuantity(cartItem) {
-      if (cartItem.quantity > 1) {
-        // Update the quantity for the specific item
-        setCartItem((prevCartItems) =>
-          prevCartItems.map((item) =>
-            item.id === cartItem.id ? { ...item, quantity: item.quantity - 1 } : item
-          )
-        );
-      }
-    }
+    // function addQuantity(cartItem) {
+    //   if (cartItem.quantity < 10) {
+    //     // Update the quantity for the specific item
+    //     setCartItem((prevCartItems) =>
+    //       prevCartItems.map((item) =>
+    //         item.id === cartItem.id ? { ...item, quantity: item.quantity + 1 } : item
+    //       )
+    //     );
+    //   }
+    // }
+    // function minusQuantity(cartItem) {
+    //   if (cartItem.quantity > 1) {
+    //     // Update the quantity for the specific item
+    //     setCartItem((prevCartItems) =>
+    //       prevCartItems.map((item) =>
+    //         item.id === cartItem.id ? { ...item, quantity: item.quantity - 1 } : item
+    //       )
+    //     );
+    //   }
+    // }
 
 
     useEffect(()=>{

@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import Cart from '../../assets/cart.png'
+import { CartContext } from '../context/context'
 
 
 
 
 export default function Header() {
+
+    const cart=useContext(CartContext)
 
     return (
         <header className="shadow sticky z-50 top-0">
@@ -24,7 +27,7 @@ export default function Header() {
                             <img  src={Cart}  style={{height:'35px', marginLeft:'30px',position:'relative'}}></img>
                            
                             <div style={{color:'white',borderRadius:'100%',textAlign:'center',height:'20px',width:'20px',background:'black',position:'absolute' ,top:'-3px',right:'-0px'}}>   
-                                <p style={{lineHeight:'10px',paddingTop:'4px'}}>10</p>
+                                <p style={{lineHeight:'10px',paddingTop:'4px'}}>{cart}</p>
                             </div> 
                             
                         </Link>
