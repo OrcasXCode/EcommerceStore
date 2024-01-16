@@ -9,6 +9,8 @@ import { ContactUs } from './components/ContactUs/ContactUs.jsx'
 import { Products } from './components/Products/Products.jsx'
 import { ProductDisplay } from './components/ProductDisplay/ProductDisplay.jsx'
 import { Cart } from './components/Cart/Cart.jsx'
+import { Login } from './components/Login/Login.jsx'
+import { SignUp } from './components/SignUp/SignUp.jsx'
 
 const router=createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const router=createBrowserRouter([
       {
         path:"/cart",
         element:<Cart></Cart>
+      },
+      {
+        path:"/login",
+        element:<Login></Login>
+      },
+      {
+        path:"/signup",
+        element:<SignUp></SignUp>
       }
     ]
   }
