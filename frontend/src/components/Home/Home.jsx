@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { CheckCircle, ChevronDown, ChevronUp, Menu, Star, X } from 'lucide-react'
+import globe from "../../assets/globe.png"
+import offers from "../../assets/offers.png"
 
 const menuItems = [
   {
@@ -38,17 +40,15 @@ export default function Home() {
           <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
             <div className="mt-8 flex max-w-max items-center space-x-2 rounded-full bg-gray-100 p-1">
               <div className="rounded-full bg-white p-1 px-2">
-                <p className="text-sm font-medium">We&apos; hiring</p>
+                <p className="text-sm font-medium">Start selling with us</p>
               </div>
-              <p className="text-sm font-medium">Join our team &rarr;</p>
+              <p className="text-sm font-medium">Become a seller &rarr;</p>
             </div>
             <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
-              People who care about your growth
+            Grow your business with our e-commerce platform
             </h1>
             <p className="mt-8 text-lg text-gray-700">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur modi blanditiis
-              dolores quasi eaque explicabo!
-            </p>
+            Join our platform and connect with a vast audience. Sell your products easily and watch your business thrive.</p>
             <form action="" className="mt-8 flex items-start space-x-2">
               <div>
                 <input
@@ -64,7 +64,7 @@ export default function Home() {
                   type="button"
                   className="rounded-md bg-black px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 >
-                  Subscribe
+                  Join Us
                 </button>
               </div>
             </form>
@@ -98,10 +98,9 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">Secured Payments</h3>
+            <h3 className="mt-8 text-lg font-semibold text-black">Secure Transactions</h3>
             <p className="mt-4 text-sm text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-              officia consequat duis enim velit mollit.
+            Experience secured payments with our advanced transaction system. Your financial data is our priority.
             </p>
           </div>
           <div>
@@ -121,258 +120,40 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">Fast & Easy to Load</h3>
+            <h3 className="mt-8 text-lg font-semibold text-black">Global Reach, Seamless Experience</h3>
             <p className="mt-4 text-sm text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-              officia consequat duis enim velit mollit.
+            Connect with customers worldwide! Our platform is designed for cross-country businesses, offering a seamless shopping experience with efficient global reach. Experience swift transactions and explore new markets effortlessly.
             </p>
           </div>
           <div>
             <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-              <svg
-                className="h-9 w-9 text-green-600"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
+              <img src={globe}></img>
             </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">Light & Dark Version</h3>
+            <h3 className="mt-8 text-lg font-semibold text-black">Vast Scalability</h3>
             <p className="mt-4 text-sm text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-              officia consequat duis enim velit mollit.
+              Reach and connect to huge audience to boost your business network 
             </p>
           </div>
           <div>
             <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
-              <svg
-                className="h-9 w-9 text-red-600"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-                />
-              </svg>
+              <img src={offers}></img>
             </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">Filter Blocks</h3>
+            <h3 className="mt-8 text-lg font-semibold text-black">Great Offers</h3>
             <p className="mt-4 text-sm text-gray-600">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-              officia consequat duis enim velit mollit.
+              Get great offers by joining as a member of the company
             </p>
           </div>
         </div>
       </div>
 
-      {/* FAQs
-      <section className="mx-auto max-w-7xl bg-gray-50 px-2 py-10 md:px-0">
-        <div>
-          <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
-              Frequently Asked Questions
-            </h2>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-600 lg:mx-auto">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere, assumenda
-            </p>
-          </div>
-          <div className="mx-auto mt-8 max-w-3xl space-y-4 md:mt-16">
-            <div className="cursor-pointer rounded-md border border-gray-400 shadow-lg transition-all duration-200">
-              <button
-                type="button"
-                className="flex w-full items-center justify-between px-4 py-5 sm:p-6"
-              >
-                <span className="flex text-lg font-semibold text-black">How do I get started?</span>
-
-                <ChevronUp className="h-5 w-5 text-gray-500" />
-              </button>
-              <div className="px-4 pb-5 sm:px-6 sm:pb-6">
-                <p className="text-gray-500">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat aliquam adipisci
-                  iusto aperiam? Sint asperiores sequi nobis inventore ratione deleniti?
-                </p>
-              </div>
-            </div>
-            {Array.from({ length: 2 }).map((_, i) => (
-              <div
-                key={i}
-                className="cursor-pointer rounded-md border border-gray-400 transition-all duration-200"
-              >
-                <button
-                  type="button"
-                  className="flex w-full items-start justify-between px-4 py-5 sm:p-6 md:items-center"
-                >
-                  <span className="flex text-start text-lg font-semibold text-black">
-                    What is the difference between a free and paid account?
-                  </span>
-                  <ChevronDown className="hidden h-5 w-5 text-gray-500 md:block" />
-                </button>
-              </div>
-            ))}
-          </div>
-          <p className="textbase mt-6 text-center text-gray-600">
-            Can&apos;t find what you&apos;re looking for?{' '}
-            <a href="#" title="" className="font-semibold text-black hover:underline">
-              Contact our support
-            </a>
-          </p>
-        </div>
-      </section> */}
-      
-      {/* Pricing Section
-      <div className="mx-auto my-12 max-w-7xl md:my-24 lg:my-32">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-6">
-          <div className="px-4 py-10 lg:col-span-5 lg:px-0">
-            <span className="mb-8 inline-block rounded-full border p-1 px-3 text-xs font-semibold">
-              Pricing that fits your budget
-            </span>
-            <h1 className="text-3xl font-bold md:text-5xl">
-              Lorem ipsum dolor sit amet consectetur.
-            </h1>
-            <p className="mt-8 font-medium">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam magni, rem sed
-              sint neque doloribus saepe veniam minima quaerat minus.
-            </p>
-            <div className="mt-8 flex w-full max-w-sm items-center space-x-2">
-              <input
-                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                type="email"
-                placeholder="Email"
-              ></input>
-              <button
-                type="button"
-                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-              >
-                Subscribe
-              </button>
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-center md:flex-row lg:col-span-7">
-            <div className="w-full p-5 md:w-1/2">
-              <div className="rounded-md border bg-white bg-opacity-90">
-                <div className=" border-b">
-                  <div className="px-9 py-7">
-                    <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Standard</h3>
-                    <p className="font-medium leading-relaxed text-gray-500">
-                      Lorem ipsum dolor sit amet, consect etur adipiscing maror.
-                    </p>
-                  </div>
-                </div>
-                <div className="px-9 pb-9 pt-8">
-                  <p className="mb-6 font-medium leading-relaxed text-gray-600">
-                    Features included:
-                  </p>
-                  <ul className="mb-11">
-                    <li className="mb-4 flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">3 Team Members</p>
-                    </li>
-                    <li className="mb-4 flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">1200+ UI Blocks</p>
-                    </li>
-                    <li className="mb-4 flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">10 GB Cloud Storage</p>
-                    </li>
-                    <li className="mb-4 flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">Individual Email Account</p>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">Premium Support</p>
-                    </li>
-                  </ul>
-                  <p className="mb-6 text-lg font-semibold leading-normal text-gray-600">
-                    <span>Starting from</span>
-                    <span className="ml-2 text-gray-900">$49/mo</span>
-                  </p>
-                  <div className="md:inline-block">
-                    <button
-                      type="button"
-                      className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                    >
-                      Start your free trial
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-full p-5 md:w-1/2">
-              <div className="rounded-md border bg-white bg-opacity-90">
-                <div className=" border-b">
-                  <div className="px-9 py-7">
-                    <h3 className="mb-3 text-xl font-bold leading-snug text-gray-900">Standard</h3>
-                    <p className="font-medium leading-relaxed text-gray-500">
-                      Lorem ipsum dolor sit amet, consect etur adipiscing maror.
-                    </p>
-                  </div>
-                </div>
-                <div className="px-9 pb-9 pt-8">
-                  <p className="mb-6 font-medium leading-relaxed text-gray-600">
-                    Features included:
-                  </p>
-                  <ul className="mb-11">
-                    <li className="mb-4 flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">3 Team Members</p>
-                    </li>
-                    <li className="mb-4 flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">1200+ UI Blocks</p>
-                    </li>
-                    <li className="mb-4 flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">10 GB Cloud Storage</p>
-                    </li>
-                    <li className="mb-4 flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">Individual Email Account</p>
-                    </li>
-                    <li className="flex items-center">
-                      <CheckCircle className="mr-2" size={16} />
-                      <p className="font-semibold leading-normal">Premium Support</p>
-                    </li>
-                  </ul>
-                  <p className="mb-6 text-lg font-semibold leading-normal text-gray-600">
-                    <span>Starting from</span>
-                    <span className="ml-2 text-gray-900">$49/mo</span>
-                  </p>
-                  <div className="md:inline-block">
-                    <button
-                      type="button"
-                      className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                    >
-                      Start your free trial
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
       {/* NewsLetter */}
       <div className="mx-auto max-w-7xl bg-gray-50 px-2 py-10 lg:px-2">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
           <div className="w-full md:w-2/3 lg:w-1/2">
-            <h2 className="text-3xl font-bold text-black">Sign up for our weekly newsletter</h2>
+            <h2 className="text-3xl font-bold text-black">Unlock Exclusive Benefits!</h2>
             <p className="mt-4 text-gray-600">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc
-              commodo posuere et sit amet ligula.
+            Sign up for our newsletter to stay informed about the latest products, exclusive offers, and exciting announcements. Don't miss out on the benefits!
             </p>
             <div className="mt-4">
               <p className="font-semibold text-gray-800">
@@ -402,7 +183,7 @@ export default function Home() {
                   type="button"
                   className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                 >
-                  Subscribe
+                  Subscribe Now
                 </button>
               </div>
             </form>
