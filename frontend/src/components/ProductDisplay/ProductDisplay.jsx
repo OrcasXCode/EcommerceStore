@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import {useRecoilState} from 'recoil'
+import {cartAtom} from '../store/atoms/cart'
 
 export function ProductDisplay() {
     
@@ -9,9 +11,8 @@ export function ProductDisplay() {
     const [Size,setSize]=useState(null)
     const [ShowSize,setShowSize]=useState(false);
     const discprice=singleProduct.price+20
-
-   
-
+    const [cartNumber,setCartNumber]= useRecoilState(cartAtom)
+  
     function addQuanity(){
         if(quantity<10){
             setQuantity(quantity+1)
@@ -152,7 +153,8 @@ export function ProductDisplay() {
                   type="button"
                   className="h-11 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   onClick={()=>{
-                    fetch("http://localhost:3000/api/v1/cart/createcart",{
+                    try{
+                      fetch("http://localhost:3000/api/v1/cart/createcart",{
                       method:"POST",
                       body:JSON.stringify({
                         productId: singleProduct.id,
@@ -170,8 +172,13 @@ export function ProductDisplay() {
                     .then(async function(res){
                       const json=await res.json();
                       console.log('Added to cart',json);
+                      setCartNumber((prevState)=>(prevState+1));
                       alert("Item added in cart")
                     })
+                    }
+                    catch(error){
+                      console.group(error)
+                    }
                   }}>
                   Add to cart
                 </button>

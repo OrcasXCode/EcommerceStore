@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Heart, Trash } from 'lucide-react'
+import { useRecoilState } from 'recoil';
+import { cartAtom } from '../store/atoms/cart';
 
 export function Cart(props) {
 
@@ -11,30 +13,8 @@ export function Cart(props) {
     const location=useLocation();
     const totalPrice=cartItem.reduce((total,cartItem)=>(total+cartItem.discountedPrice),0)
     const totalDiscountedPrice = cartItem.reduce((total, cartItem) => (total + cartItem.discountedPrice), 0);
+    const [cartNumber,setCartNumber]=useRecoilState(cartAtom)
     
-    // total: This is the accumulator, which accumulates the result of each iteration.
-    // cartItem: This is the current element being processed in the array during each iteration.
-    // function addQuantity(cartItem) {
-    //   if (cartItem.quantity < 10) {
-    //     // Update the quantity for the specific item
-    //     setCartItem((prevCartItems) =>
-    //       prevCartItems.map((item) =>
-    //         item.id === cartItem.id ? { ...item, quantity: item.quantity + 1 } : item
-    //       )
-    //     );
-    //   }
-    // }
-    // function minusQuantity(cartItem) {
-    //   if (cartItem.quantity > 1) {
-    //     // Update the quantity for the specific item
-    //     setCartItem((prevCartItems) =>
-    //       prevCartItems.map((item) =>
-    //         item.id === cartItem.id ? { ...item, quantity: item.quantity - 1 } : item
-    //       )
-    //     );
-    //   }
-    // }
-
 
     useEffect(()=>{
         setTotalAmount(totalPrice*quantity)
@@ -46,10 +26,7 @@ export function Cart(props) {
             .then(async function(res){
                 const data=await res.json();
                 setCartItem(data.allCartItems);
-                setCartLength(cartItem.length);
-                console.log(cartItem)
-                // console.log(cartLength)
-                // console.log(cartItem[0]._id)
+                setCartNumber(cartItem.length)
             })
         }
     },[location.pathname])
@@ -67,7 +44,7 @@ export function Cart(props) {
             <h2 id="cart-heading" className="sr-only">
               Items in your shopping cart
             </h2>
-            <ul role="list" className="divide-y divide-gray-200">
+            <ul key={cartItem.id} role="list" className="divide-y divide-gray-200">
               {cartItem.map((cartItem) => (
                 <div key={cartItem.id} className="">
                   <li className="flex py-6 sm:py-6 ">
@@ -141,6 +118,7 @@ export function Cart(props) {
                             const res=await fetch("http://localhost:3000/api/v1/cart/getAllCartItems")
                             const data=await res.json();
                             setCartItem(data.allCartItems);
+                            setCartNumber((prevState)=>(prevState-1));
                             alert("Item deleted from cart")
                           })
                       }}>
