@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CheckCircle, ChevronDown, ChevronUp, Menu, Star, X } from 'lucide-react'
 import globe from "../../assets/globe.png"
 import offers from "../../assets/offers.png"
+import {toast,Toaster} from "react-hot-toast"
 
 const menuItems = [
   {
@@ -34,7 +35,7 @@ export default function Home() {
 
   return (
     <div className="w-full">
-    
+          <div><Toaster/></div>
       {/* Hero Section */}
       <div className="relative w-full bg-white">
         <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
@@ -57,6 +58,7 @@ export default function Home() {
                   type="email"
                   placeholder="Enter your email"
                   id="email"
+                  onChange={(e)=>{setSellerEmail(e.target.value)}}
                 ></input>
                 <p className="mt-2 text-sm text-gray-500">We care about your privacy</p>
               </div>
@@ -64,6 +66,30 @@ export default function Home() {
                 <button
                   type="button"
                   className="rounded-md bg-black px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  onClick={()=>{
+                    fetch('http://localhost:3000/api/v1/register/AsSeller',{
+                            method:"POST",
+                            body:JSON.stringify({
+                              email:sellerEmail
+                            }),
+                            headers:{
+                              'Content-Type':'application/json'
+                            }
+                          })
+                          .then(async function(res){
+                            if(res.ok){
+                              // alert("login sucessfull")
+                              const data=await res.json();
+                              toast.success("Registered successfully")
+                            }
+                            else{
+                              throw new Error("Registering email Failed")
+                            }
+                          })
+                        .catch((error)=>{
+                          toast.success("Registering Email Failed")
+                        })
+                  }}
                 >
                   Join Us
                 </button>
@@ -179,10 +205,37 @@ export default function Home() {
                   className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                   type="email"
                   placeholder="Email"
+                  onChange={(e)=>{
+                    setSellerEmail(e.target.value)
+                  }}
                 ></input>
                 <button
                   type="button"
                   className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  onClick={()=>{
+                    fetch('http://localhost:3000/api/v1/register/AsSeller',{
+                            method:"POST",
+                            body:JSON.stringify({
+                              email:sellerEmail
+                            }),
+                            headers:{
+                              'Content-Type':'application/json'
+                            }
+                          })
+                          .then(async function(res){
+                            if(res.ok){
+                              // alert("login sucessfull")
+                              const data=await res.json();
+                              toast.success("Registered Successfully")
+                            }
+                            else{
+                              throw new Error("Registering email Failed")
+                            }
+                          })
+                        .catch((error)=>{
+                          toast.success("Registering Email Failed")
+                        })
+                  }}
                 >
                   Subscribe Now
                 </button>
