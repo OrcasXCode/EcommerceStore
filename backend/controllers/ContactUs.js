@@ -1,3 +1,4 @@
+const Seller = require("../models/Seller");
 const User = require("../models/User");
 const Contact = require("../models/contact");
 
@@ -46,4 +47,35 @@ async function ContactUs(req, res) {
   }
 }
 
-module.exports = { ContactUs };
+async function sellerEmail(req, res) {
+  try {
+    const email = req.body.email;
+
+    const userData = await Seller.findOne({
+      email: email,
+    });
+    if (userData) {
+      return res.status(404).json({
+        success: false,
+        msg: "This Email has already been registered by a Seller",
+      });
+    } else {
+      const newSeller = await Seller.create({
+        email: email,
+      });
+      return res.status(200).json({
+        success: true,
+        msg: "Seller email registered sucessfully",
+        data: newSeller,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      msg: "Server error failed to save mail",
+    });
+  }
+}
+
+module.exports = { ContactUs, sellerEmail };

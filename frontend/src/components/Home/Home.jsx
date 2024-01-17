@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CheckCircle, ChevronDown, ChevronUp, Menu, Star, X } from 'lucide-react'
 import globe from "../../assets/globe.png"
 import offers from "../../assets/offers.png"
@@ -24,6 +24,7 @@ const menuItems = [
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [sellerEmail,setSellerEmail]=useState("");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
