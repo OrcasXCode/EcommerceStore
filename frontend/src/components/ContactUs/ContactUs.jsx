@@ -1,7 +1,8 @@
-'use client'
+// 'use client'
 
 import React, { useState } from 'react'
 import { Menu, X, MapPin } from 'lucide-react'
+import {toast,Toaster} from "react-hot-toast"
 
 const menuItems = [
   {
@@ -50,6 +51,7 @@ export function ContactUs() {
 
   return (
     <div>
+      <div><Toaster/></div>
       <div className="mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-7xl py-12 md:py-24">
           <div className="grid items-center justify-items-center gap-x-4 gap-y-10 lg:grid-cols-2">
@@ -70,8 +72,8 @@ export function ContactUs() {
                         First Name
                       </label>
                       <input
-                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
-                        type="text"
+                        style={{color:'black'}}
+                        className="flex h-10 w-full rounded-md border border-gray-300  px-3 py-2 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"                        type="text"
                         id="first_name"
                         placeholder="First Name"
                         onChange={(e)=>{
@@ -87,7 +89,8 @@ export function ContactUs() {
                         Last Name
                       </label>
                       <input
-                        className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                        style={{color:'black'}}
+                        className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                         type="text"
                         id="last_name"
                         placeholder="Last Name"
@@ -105,7 +108,8 @@ export function ContactUs() {
                       Email
                     </label>
                     <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                      style={{color:'black'}}
+                      className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                       type="text"
                       id="email"
                       placeholder="Email"
@@ -122,7 +126,8 @@ export function ContactUs() {
                       Phone number
                     </label>
                     <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                      style={{color:'black'}}
+                      className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                       type="tel"
                       id="phone_number"
                       placeholder="Phone number"
@@ -139,7 +144,8 @@ export function ContactUs() {
                       Message
                     </label>
                     <textarea
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
+                      style={{color:'black'}}
+                      className="flex h-10 w-full rounded-md border border-gray-300 px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                       id="message"
                       placeholder="Leave us a message"
                       cols={3}
@@ -165,8 +171,17 @@ export function ContactUs() {
                           "Content-Type":"application/json"
                         }
                       })
-                      .then(async function(){
-                        alert("Contact Us message sent successfully")
+                      .then(async function(res){
+                        if(res.ok){
+                          const data = await res.json();
+                          toast.success("Message Sent")
+                        }
+                        else{
+                          throw new error("Failed sent message");
+                        }
+                      })
+                      .catch((error)=>{
+                        toast.error("Failed to send message");
                       })
                     }}
                   >
