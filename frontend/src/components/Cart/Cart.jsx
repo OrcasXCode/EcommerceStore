@@ -7,18 +7,17 @@ import { cartAtom } from '../store/atoms/cart';
 export function Cart(props) {
 
     const[cartItem,setCartItem]=useState([]);
-    const[cartLength,setCartLength]=useState(0);
-    const[quantity,setQuantity]=useState(1);
+    // const[quantity,setQuantity]=useState(1);
     const[totalAmount,setTotalAmount]=useState()
     const location=useLocation();
-    const totalPrice=cartItem.reduce((total,cartItem)=>(total+cartItem.discountedPrice),0)
-    const totalDiscountedPrice = cartItem.reduce((total, cartItem) => (total + cartItem.discountedPrice), 0);
+    // const totalPrice=cartItem.reduce((total,cartItem)=>(total+cartItem.discountedPrice),0)
+    // const totalDiscountedPrice = cartItem.reduce((total, cartItem) => (total + cartItem.discountedPrice), 0);
     const [cartNumber,setCartNumber]=useRecoilState(cartAtom)
     
 
-    useEffect(()=>{
-        setTotalAmount(totalPrice*quantity)
-    },[quantity])
+    // useEffect(()=>{
+    //     setTotalAmount(totalPrice*quantity)
+    // },[quantity])
 
     useEffect(()=>{
         if(location.pathname==='/cart'){
@@ -26,10 +25,15 @@ export function Cart(props) {
             .then(async function(res){
                 const data=await res.json();
                 setCartItem(data.allCartItems);
-                setCartNumber(cartItem.length)
+                
             })
         }
     },[location.pathname])
+
+    useEffect(()=>{
+      setCartNumber(cartItem.length);
+      // console.log(cartNumber)
+    },[location.pathname,cartItem])
   
 
 
@@ -154,7 +158,7 @@ export function Cart(props) {
                   <dt className="flex items-center text-sm text-gray-800">
                     <span>Discount</span>
                   </dt>
-                  <dd className="text-sm font-medium text-green-700">$ {totalDiscountedPrice}</dd>
+                  <dd className="text-sm font-medium text-green-700">$ 0</dd>
                 </div>
                 <div className="flex items-center justify-between py-4">
                   <dt className="flex text-sm text-gray-800">
@@ -168,7 +172,7 @@ export function Cart(props) {
                 </div>
               </dl>
               <div className="px-2 pb-4 font-medium text-green-700">
-                You will save ${totalAmount-totalDiscountedPrice} on this order
+                You will save $0 on this order
               </div>
             </div>
           </section>

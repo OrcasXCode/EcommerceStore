@@ -171,7 +171,7 @@ export function ProductDisplay() {
                     })
                     .then(async function(res){
                       const json=await res.json();
-                      console.log('Added to cart',json);
+                      // console.log('Added to cart',json);
                       setCartNumber((prevState)=>(prevState+1));
                       alert("Item added in cart")
                     })

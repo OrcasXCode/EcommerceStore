@@ -2,13 +2,13 @@ import React, { useContext } from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import Cart from '../../assets/cart.png'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { cartAtom } from '../store/atoms/cart'
 
 
 export default function Header() {
 
-    const cartNumber=useRecoilValue(cartAtom)
+    const [cartNumber,setCartNumber]=useRecoilState(cartAtom)
 
     return (
         <header className="shadow sticky z-50 top-0">
