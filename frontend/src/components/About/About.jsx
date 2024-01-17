@@ -1,7 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Menu, X, MapPin } from 'lucide-react'
+import {toast,Toaster} from "react-hot-toast"
 
 const menuItems = [
   {
@@ -83,6 +84,7 @@ const users= [
 
 export function About() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [sellerEmail,setSellerEmail]=useState("");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -93,6 +95,7 @@ export function About() {
     
 
       <div className="mx-auto max-w-7xl px-4">
+        <div><Toaster/></div>
         {/* Hero Map */}
         <div className="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
           <div className="max-w-max rounded-full border bg-gray-50 p-1 px-3">
@@ -163,12 +166,50 @@ export function About() {
             <p className="text-base text-gray-600 md:text-lg">
             If you've got the skills and passion, we invite you to join our team. We believe in fostering a culture that empowers you to do your best work
             </p>
-            <button
-              type="button"
-              className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-            >
-              Join Now
-            </button>
+             <form action="" className="mt-8 flex items-start space-x-2">
+              <div>
+                <input
+                  className="flex w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="email"
+                  placeholder="Enter your email"
+                  id="email"
+                  onChange={(e)=>{setSellerEmail(e.target.value)}}
+                ></input>
+                <p className="mt-2 text-sm text-gray-500">We care about your privacy</p>
+              </div>
+              <div>
+                <button
+                  type="button"
+                  className="rounded-md bg-black px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  onClick={()=>{
+                    fetch('http://localhost:3000/api/v1/register/AsEmployee',{
+                            method:"POST",
+                            body:JSON.stringify({
+                              email:sellerEmail
+                            }),
+                            headers:{
+                              'Content-Type':'application/json'
+                            }
+                          })
+                          .then(async function(res){
+                            if(res.ok){
+                              // alert("login sucessfull")
+                              const data=await res.json();
+                              toast.success("Registered successfully")
+                            }
+                            else{
+                              throw new Error("Registering email Failed")
+                            }
+                          })
+                        .catch((error)=>{
+                          toast.success("Registering Email Failed")
+                        })
+                  }}
+                >
+                  Join
+                </button>
+              </div>
+            </form>
           </div>
           <div className="md:mt-o mt-10 w-full">
             <img
