@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { Heart, Trash } from 'lucide-react'
 import { useRecoilState } from 'recoil';
 import { cartAtom } from '../store/atoms/cart';
+import {toast,Toaster} from "react-hot-toast"
+
 
 export function Cart(props) {
 
@@ -39,6 +41,7 @@ export function Cart(props) {
 
     return (
         <div className="mx-auto max-w-7xl px-2 lg:px-0">
+          <div><Toaster/></div>
       <div className="mx-auto max-w-2xl py-8 lg:max-w-7xl">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Shopping Cart
@@ -118,13 +121,20 @@ export function Cart(props) {
                               'Content-Type':'application/json'
                             }
                         })
-                        .then(async function(){
-                            const res=await fetch("http://localhost:3000/api/v1/cart/getAllCartItems")
-                            const data=await res.json();
-                            setCartItem(data.allCartItems);
-                            setCartNumber((prevState)=>(prevState-1));
-                            alert("Item deleted from cart")
-                          })
+                        .then(async function(res){
+                            if(res.ok){
+                              const res=await fetch("http://localhost:3000/api/v1/cart/getAllCartItems")
+                              const data=await res.json();
+                              setCartItem(data.allCartItems);
+                              setCartNumber((prevState)=>(prevState-1));
+                              toast.success("Item deleted from cart")
+                            }else{
+                              throw new error("Failed to remove from cart")
+                            }
+                        })
+                        .catch((e)=>{
+                          toast.error("Failed to add in cart")
+                        })
                       }}>
                         <Trash size={12} className="text-red-500" />
                         <span className="text-xs font-medium text-red-500">Remove</span>

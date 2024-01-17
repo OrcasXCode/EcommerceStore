@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
+import {toast,Toaster} from "react-hot-toast"
 
 export function SignUp() {
 
@@ -9,6 +10,7 @@ export function SignUp() {
 
   return (
     <section>
+      <div><Toaster/></div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
@@ -94,8 +96,18 @@ export function SignUp() {
                           "Content-Type":"application/json"
                         },
                       })
-                      .then(async function(){
-                        alert("signin sucessfull")
+                      .then(async function(res){
+                        if(res.ok){
+                          // alert("login sucessfull")
+                          const data=await res.json();
+                          toast.success("Sign Up successfull")
+                        }
+                        else{
+                          throw new Error("Sign In Failed")
+                        }
+                      })
+                      .catch((error)=>{
+                        toast.success("Sign Up Failed")
                       })
                     }}
                   

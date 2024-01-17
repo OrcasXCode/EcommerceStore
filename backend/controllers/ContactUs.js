@@ -1,55 +1,49 @@
 const User = require("../models/User");
 const Contact = require("../models/contact");
 
+async function ContactUs(req, res) {
+  try {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const phonenumber = req.body.phonenumber;
+    const message = req.body.message;
 
-
-
-async function ContactUs(req,res){
-    try{
-        const firstname=req.body.firstname;
-        const lastname=req.body.lastname;
-        const email=req.body.email;
-        const phonenumber=req.body.phonenumber;
-        const message=req.body.message;
-
-        if(!firstname || !lastname || !email || !phonenumber || !message){
-            return res.status(403).json({
-                success:false,
-                msg:"All fields are required"
-            })
-        }
-
-        const findUser=await User.findOne({
-            email:email
-        })
-        if(!findUser){
-            return res.status(403).json({
-                success: false,
-                msg:'Email is not registered'
-            })
-        }
-        const contactdata=await Contact.create({
-            firstname,
-            lastname,
-            email,
-            phonenumber,
-            message
-        })
-        return res.status(200).json({
-            success: true,
-            msg:"Contact us form successfull",
-            contactdata
-        })
-
+    if (!firstname || !lastname || !email || !phonenumber || !message) {
+      return res.status(403).json({
+        success: false,
+        msg: "All fields are required",
+      });
     }
-    catch(error){
-        console.log(error)
-        return res.status(500).json({
-            success:false,
-            msg:"Server error failed to contact us"
-        })
+
+    const findUser = await User.findOne({
+      email: email,
+    });
+    if (!findUser) {
+      return res.status(403).json({
+        success: false,
+        msg: "Email is not registered",
+      });
     }
+    const contactdata = await Contact.create({
+      firstname,
+      lastname,
+      email,
+      phonenumber,
+      message,
+    });
+    return res.status(200).json({
+      success: true,
+      msg: "Contact us form successfull",
+      contactdata,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      msg: "Server error failed to contact us",
+    });
+  }
 }
 
-
-module.exports={ContactUs}
+module.exports = { ContactUs };

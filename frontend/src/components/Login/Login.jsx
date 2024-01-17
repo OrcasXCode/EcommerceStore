@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
+import {toast,Toaster} from "react-hot-toast"
 
 export function Login() {
 
@@ -8,6 +9,7 @@ export function Login() {
 
   return (
     <section>
+      <div><Toaster/></div>
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
@@ -69,7 +71,7 @@ export function Login() {
                     type="button"
                     className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                     onClick={()=>{
-                      fetch('h,ttp://localhost:3000/api/v1/user/login',{
+                      fetch('http://localhost:3000/api/v1/user/login',{
                         method:'POST',
                         body:JSON.stringify({
                           email:email,
@@ -79,8 +81,18 @@ export function Login() {
                           "Content-Type":"application/json"
                         }
                       })
-                      .then(async function(){
-                        alert("login sucessfull")
+                      .then(async function(res){
+                        if(res.ok){
+                          // alert("login sucessfull")
+                          const data=await res.json();
+                          toast.success("Login successfull")
+                        }
+                        else{
+                          throw new Error("Sign In Failed")
+                        }
+                      })
+                      .catch((error)=>{
+                        toast.success("Login Failed")
                       })
                     }}
                   >

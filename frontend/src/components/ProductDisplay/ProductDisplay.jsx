@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {useRecoilState} from 'recoil'
 import {cartAtom} from '../store/atoms/cart'
+import {toast,Toaster} from "react-hot-toast"
 
 export function ProductDisplay() {
     
@@ -55,6 +56,7 @@ export function ProductDisplay() {
 
     return (
         <div className="mx-auto max-w-7xl px-4 md:px-8 2xl:px-16">
+           <div><Toaster/></div>
           <div className="pt-8">
             <div className="flex items-center">
               <ol className="flex w-full items-center overflow-hidden">
@@ -153,7 +155,6 @@ export function ProductDisplay() {
                   type="button"
                   className="h-11 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   onClick={()=>{
-                    try{
                       fetch("http://localhost:3000/api/v1/cart/createcart",{
                       method:"POST",
                       body:JSON.stringify({
@@ -170,15 +171,18 @@ export function ProductDisplay() {
                       }
                     })
                     .then(async function(res){
-                      const json=await res.json();
-                      // console.log('Added to cart',json);
-                      setCartNumber((prevState)=>(prevState+1));
-                      alert("Item added in cart")
+                      if(res.ok){
+                        const json=await res.json();
+                        setCartNumber((prevState)=>(prevState+1));
+                        toast.success("Added in Cart")
+                      }
+                      else{
+                        throw new error("Failed to add in cart");
+                      }
                     })
-                    }
-                    catch(error){
-                      console.group(error)
-                    }
+                    .catch((e)=>{
+                      toast.error("Failed to add in Cart")
+                    })
                   }}>
                   Add to cart
                 </button>
