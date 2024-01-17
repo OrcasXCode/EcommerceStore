@@ -1,3 +1,4 @@
+const Employee = require("../models/Employee");
 const Seller = require("../models/Seller");
 const User = require("../models/User");
 const Contact = require("../models/contact");
@@ -77,5 +78,35 @@ async function sellerEmail(req, res) {
     });
   }
 }
+async function EmployeeEmail(req, res) {
+  try {
+    const email = req.body.email;
 
-module.exports = { ContactUs, sellerEmail };
+    const userData = await Employee.findOne({
+      email: email,
+    });
+    if (userData) {
+      return res.status(404).json({
+        success: false,
+        msg: "This Email has already been registered by a Employee",
+      });
+    } else {
+      const newSeller = await Employee.create({
+        email: email,
+      });
+      return res.status(200).json({
+        success: true,
+        msg: "Employee email registered sucessfully",
+        data: newSeller,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      msg: "Server error failed to save mail",
+    });
+  }
+}
+
+module.exports = { ContactUs, sellerEmail, EmployeeEmail };
