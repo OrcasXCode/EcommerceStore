@@ -8,6 +8,7 @@ async function Signup(req, res) {
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
+    const userType = req.body.userType;
 
     if (!name || !email || !password) {
       res.status(404).json({
@@ -32,6 +33,7 @@ async function Signup(req, res) {
       name: name,
       email: email,
       password: hashedPassword,
+      userType: userType,
     });
     res.status(200).json({
       status: "true",

@@ -1,11 +1,12 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const dotenv = require("dotenv");
 dotenv.config();
 
 exports.auth = async (req, res, next) => {
   try {
     const token =
-      req.cookie.token ||
+      req.cookies.token ||
       req.body.token ||
       req.header("Authorization").replace("Bearer ", "");
 
@@ -20,7 +21,7 @@ exports.auth = async (req, res, next) => {
     try {
       const decodedToken = await jwt.decode(token, process.env.JWT_SECRET);
       console.log(decodedToken);
-      req.user = decode;
+      req.user = decodedToken;
     } catch (error) {
       console.log(error);
       return res.status(401).json({
@@ -35,7 +36,7 @@ exports.auth = async (req, res, next) => {
   }
 };
 
-exports.isSeller = async (req, res) => {
+exports.isSeller = async (req, res, next) => {
   try {
     const userType = await User.findOne({
       email: req.user.email,
@@ -55,7 +56,7 @@ exports.isSeller = async (req, res) => {
     });
   }
 };
-exports.isAdmin = async (req, res) => {
+exports.isAdmin = async (req, res, next) => {
   try {
     const userType = await User.findOne({
       email: req.user.email,
@@ -75,7 +76,7 @@ exports.isAdmin = async (req, res) => {
     });
   }
 };
-exports.isUser = async (req, res) => {
+exports.isUser = async (req, res, next) => {
   try {
     const userType = await User.findOne({
       email: req.user.email,
