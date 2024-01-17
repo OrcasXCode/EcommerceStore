@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import {Link, NavLink, useLocation} from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import Cart from '../../assets/cart.png'
 import { useRecoilState, useRecoilValue } from 'recoil'
@@ -9,6 +9,14 @@ import { cartAtom } from '../store/atoms/cart'
 export default function Header() {
 
     const [cartNumber,setCartNumber]=useRecoilState(cartAtom)
+    const location=useLocation();
+    useEffect(()=>{
+        if(location.pathname==="/"){
+            setCartNumber(cartNumber);
+        }
+    },[location.pathname])
+
+    
 
     return (
         <header className="shadow sticky z-50 top-0">

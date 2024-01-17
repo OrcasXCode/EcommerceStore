@@ -1,6 +1,4 @@
-'use client'
-
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CheckCircle, ChevronDown, ChevronUp, Menu, Star, X } from 'lucide-react'
 import globe from "../../assets/globe.png"
 import offers from "../../assets/offers.png"
@@ -30,6 +28,8 @@ export default function Home() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
+
+  
 
   return (
     <div className="w-full">
