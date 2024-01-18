@@ -1,6 +1,11 @@
 const { default: mongoose } = require("mongoose");
 
 const CreateNewItemSchema = new mongoose.Schema({
+  seller: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Seller",
+  },
   productId: {
     type: String,
     required: true,

@@ -24,6 +24,12 @@ const UserSchema = new mongoose.Schema({
     enum: ["Admin", "Seller", "User"],
     required: true,
   },
+  productsOnSale: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CreateItem",
+    },
+  ],
 });
 
 const User = mongoose.model("User", UserSchema);
