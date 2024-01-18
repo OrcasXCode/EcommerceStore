@@ -72,9 +72,6 @@ async function Login(req, res) {
     }
 
     const pass = await bcrypt.compare(password, userLogin.password);
-    // console.log('Entered password:', password);
-    // console.log('Stored password:', userLogin.password);
-    // console.log('Password comparison result:', pass);
 
     if (pass) {
       const token = jwt.sign(

@@ -7,6 +7,7 @@ const cartRoutes = require("./routes/ViewCart");
 const userRoutes = require("./routes/user");
 const RegisterRoutes = require("./routes/Registering");
 const sellerRoutes = require("./routes/Seller");
+const adminoutes = require("./routes/Admin");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -24,6 +25,7 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/contact", contactusRoutes);
 app.use("/api/v1/seller", sellerRoutes);
 app.use("/api/v1/register", RegisterRoutes);
+app.use("/api/v1/admin", adminoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -1,9 +1,9 @@
 const CreateNewItem = require("../models/CreateItem");
-const Seller = require("../models/Seller");
 const User = require("../models/User");
 
 async function addNewProduct(req, res) {
   try {
+    //note : - how this exports
     const SellerId = req.user._id;
     const productId = req.body.productId;
     const title = req.body.title;
@@ -32,6 +32,7 @@ async function addNewProduct(req, res) {
     });
 
     const productDetails = await CreateNewItem.findById(createNewProduct._id);
+    //note:-go  into deep in this syntax
     await User.findByIdAndUpdate(
       {
         _id: sellerDetails._id,
