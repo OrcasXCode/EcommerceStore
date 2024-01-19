@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {Link, NavLink, useLocation} from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import Cart from '../../assets/cart.png'
@@ -7,7 +7,7 @@ import { cartAtom } from '../store/atoms/cart'
 
 
 export default function Header() {
-
+    const [sellerLogin,setSellerLogin]=useState(true);
     const [cartNumber,setCartNumber]=useRecoilState(cartAtom)
     const location=useLocation();
     useEffect(()=>{
@@ -29,28 +29,8 @@ export default function Header() {
                             alt="Logo"
                         />
                     </Link>
-                    <div className="flex items-center lg:order-2">
-                        <Link to="/cart" style={{position:'relative', marginRight:'20px'}}>
-                            <img  src={Cart}  style={{height:'35px', marginLeft:'30px',position:'relative'}}></img>
-                           
-                            <div style={{color:'white',borderRadius:'100%',textAlign:'center',height:'20px',width:'20px',background:'black',position:'absolute' ,top:'-3px',right:'-0px'}}>   
-                                <p style={{lineHeight:'10px',paddingTop:'4px'}}>{cartNumber}</p>
-                            </div> 
-                            
-                        </Link>
-                        <Link
-                            to="/login"
-                            className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-                        >
-                            Log in
-                        </Link>
-                        <Link
-                            to="/signup"
-                            className="text-white bg-black hover:grey focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-                        >
-                            Sign Up
-                        </Link>
-                    </div>
+
+
                     <div
                         className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
                         id="mobile-menu-2"
@@ -99,6 +79,36 @@ export default function Header() {
                             
                         </ul>
                     </div>
+                    
+                    {sellerLogin ?<div className="flex items-center lg:order-2"> <Link
+                            to="/sellerDasboard"
+                            className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                        >
+                        
+                            Dashboard
+                        </Link></div>:<div className="flex items-center lg:order-2">
+                        <Link to="/cart" style={{position:'relative', marginRight:'20px'}}>
+                            <img  src={Cart}  style={{height:'35px', marginLeft:'30px',position:'relative'}}></img>
+                           
+                            <div style={{color:'white',borderRadius:'100%',textAlign:'center',height:'20px',width:'20px',background:'black',position:'absolute' ,top:'-3px',right:'-0px'}}>   
+                                <p style={{lineHeight:'10px',paddingTop:'4px'}}>{cartNumber}</p>
+                            </div> 
+                            
+                        </Link>
+                        <Link
+                            to="/login"
+                            className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                        >
+                            Log in
+                        </Link>
+                        <Link
+                            to="/signup"
+                            className="text-white bg-black hover:grey focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                        >
+                            Sign Up
+                        </Link>
+                    </div>}
+                    
                 </div>
             </nav>
         </header>

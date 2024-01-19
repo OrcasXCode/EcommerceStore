@@ -11,6 +11,7 @@ import { ProductDisplay } from './components/ProductDisplay/ProductDisplay.jsx'
 import { Cart } from './components/Cart/Cart.jsx'
 import { Login } from './components/Login/Login.jsx'
 import { SignUp } from './components/SignUp/SignUp.jsx'
+import { AdminDasboard } from './components/Dashboard/adminDasboard.jsx'
 
 const router=createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router=createBrowserRouter([
       {
         path:"/signup",
         element:<SignUp></SignUp>
+      },
+      {
+        path:"/sellerDasboard",
+        element:<AdminDasboard></AdminDasboard>
       }
     ]
   }
