@@ -7,7 +7,7 @@ import { cartAtom } from '../store/atoms/cart'
 
 
 export default function Header() {
-    const [sellerLogin,setSellerLogin]=useState(true);
+    const [sellerLogin,setSellerLogin]=useState(false);
     const [cartNumber,setCartNumber]=useRecoilState(cartAtom)
     const location=useLocation();
     useEffect(()=>{

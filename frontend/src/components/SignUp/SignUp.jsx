@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import {toast,Toaster} from "react-hot-toast"
+import { DropDownList } from "@progress/kendo-react-dropdowns";
 
 export function SignUp() {
-
+  // const categories = ["User","Admin","Seller"];
   const[name,setName]=useState("");
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
@@ -79,6 +80,14 @@ export function SignUp() {
                       }}
                     ></input>
                   </div>
+                  {/* <fieldset style={{border: '1px solid #ccc', padding: '5px', borderRadius: '5px', marginTop:'10px', width: 'max-content'}}> */}
+                      {/* <div>I am</div> */}
+                      <select style={{width: '200px' ,padding: '8px', fontSize: '14px',marginTop:'10px', border: '1px solid #ccc', borderRadius: '3px', outline: 'none'}}>
+                          <option value="User">User</option>
+                          <option value="Admin">Admin</option>
+                          <option value="Guest">Seller</option>
+                      </select>
+                  {/* </fieldset> */}
                 </div>
                 <div>
                   <button

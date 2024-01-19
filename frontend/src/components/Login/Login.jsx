@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import {toast,Toaster} from "react-hot-toast"
 
 export function Login() {
-
+  const categories = ["User","Admin","Seller"];
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
 
