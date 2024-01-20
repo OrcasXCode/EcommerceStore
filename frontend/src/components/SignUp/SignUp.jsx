@@ -8,6 +8,7 @@ export function SignUp() {
   const[name,setName]=useState("");
   const[email,setEmail]=useState("");
   const[password,setPassword]=useState("");
+  const[userType,setUserType]=useState("User");
 
   return (
     <section>
@@ -80,14 +81,11 @@ export function SignUp() {
                       }}
                     ></input>
                   </div>
-                  {/* <fieldset style={{border: '1px solid #ccc', padding: '5px', borderRadius: '5px', marginTop:'10px', width: 'max-content'}}> */}
-                      {/* <div>I am</div> */}
-                      <select style={{width: '200px' ,padding: '8px', fontSize: '14px',marginTop:'10px', border: '1px solid #ccc', borderRadius: '3px', outline: 'none'}}>
-                          <option value="User">User</option>
+                      <select onChange={(e)=>{setUserType(e.target.value)}} style={{width: '200px' ,padding: '8px', fontSize: '14px',marginTop:'10px', border: '1px solid #ccc', borderRadius: '3px', outline: 'none'}}>
+                          <option value="User" >User</option>
                           <option value="Admin">Admin</option>
-                          <option value="Guest">Seller</option>
+                          <option value="Seller">Seller</option>
                       </select>
-                  {/* </fieldset> */}
                 </div>
                 <div>
                   <button
@@ -100,6 +98,7 @@ export function SignUp() {
                           name:name,
                           email:email,
                           password:password,
+                          userType:userType
                         }),
                         headers:{
                           "Content-Type":"application/json"
@@ -116,7 +115,8 @@ export function SignUp() {
                         }
                       })
                       .catch((error)=>{
-                        toast.success("Sign Up Failed")
+                        console.log(error)
+                        toast.error("Sign Up Failed")
                       })
                     }}
                   

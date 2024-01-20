@@ -4,8 +4,8 @@ export function AdminDasboard(props) {
     
 
     return (
-        <>
-            <p>Hello welcome to seller dashboard</p>
-        </>
+        <div style={{textAlign:'center'}}>  
+            <h1>Hello welcome to seller dashboard</h1>
+        </div>
     )
 }
