@@ -2,22 +2,26 @@ import React, { useContext, useEffect, useState } from 'react'
 import {Link, NavLink, useLocation} from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import Cart from '../../assets/cart.png'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { cartAtom } from '../store/atoms/cart'
+import { useRecoilStateLoadable} from 'recoil'
+import { cartAtomFamily } from '../store/atoms/cart'
 
 
 export default function Header() {
     const [sellerLogin,setSellerLogin]=useState(false);
-    const [cartNumber,setCartNumber]=useRecoilState(cartAtom)
-    const location=useLocation();
-    useEffect(()=>{
-        if(location.pathname==="/"){
-            setCartNumber(cartNumber);
-        }
-    },[location.pathname])
+    const [cartNumber,setCartNumber]=useRecoilStateLoadable(cartAtomFamily());
 
     
 
+    // const cartData = cartNumber.contents ? cartNumber.contents.allCartItems.length : 0;
+    if(cartNumber.state==="loading"){
+        return(
+            <div></div>
+        )
+    }
+
+
+    const cartData = cartNumber.contents.allCartItems.length;
+    
     return (
         <header className="shadow sticky z-50 top-0">
             <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
@@ -82,7 +86,7 @@ export default function Header() {
                     
                     {sellerLogin ?<div className="flex items-center lg:order-2"> <Link
                             to="/sellerDasboard"
-                            className="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                            className="hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
                         
                             Dashboard
@@ -91,7 +95,7 @@ export default function Header() {
                             <img  src={Cart}  style={{height:'35px', marginLeft:'30px',position:'relative'}}></img>
                            
                             <div style={{color:'white',borderRadius:'100%',textAlign:'center',height:'20px',width:'20px',background:'black',position:'absolute' ,top:'-3px',right:'-0px'}}>   
-                                <p style={{lineHeight:'10px',paddingTop:'4px'}}>{cartNumber}</p>
+                                <p style={{lineHeight:'10px',paddingTop:'4px'}}>{cartData}</p>
                             </div> 
                             
                         </Link>

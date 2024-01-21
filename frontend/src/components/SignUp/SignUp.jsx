@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import {toast,Toaster} from "react-hot-toast"
-import { DropDownList } from "@progress/kendo-react-dropdowns";
+// import { DropDownList } from "@progress/kendo-react-dropdowns";
 
 export function SignUp() {
   // const categories = ["User","Admin","Seller"];

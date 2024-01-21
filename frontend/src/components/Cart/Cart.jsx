@@ -1,40 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Heart, Trash } from 'lucide-react'
-import { useRecoilState } from 'recoil';
-import { cartAtom } from '../store/atoms/cart';
+import { Trash } from 'lucide-react'
+import { useRecoilState, useRecoilStateLoadable } from 'recoil';
+import { cartAtom, cartAtomFamily } from '../store/atoms/cart';
 import {toast,Toaster} from "react-hot-toast"
 
 
 export function Cart(props) {
 
     const[cartItem,setCartItem]=useState([]);
-    // const[quantity,setQuantity]=useState(1);
     const[totalAmount,setTotalAmount]=useState()
     const location=useLocation();
-    // const totalPrice=cartItem.reduce((total,cartItem)=>(total+cartItem.discountedPrice),0)
-    // const totalDiscountedPrice = cartItem.reduce((total, cartItem) => (total + cartItem.discountedPrice), 0);
     const [cartNumber,setCartNumber]=useRecoilState(cartAtom)
-    
+    const [cartNum,setCartNum]=useRecoilStateLoadable(cartAtomFamily());
 
-    // useEffect(()=>{
-    //     setTotalAmount(totalPrice*quantity)
-    // },[quantity])
+  
+     if(cartNumber.state==="loading"){
+        return(
+            <div></div>
+        )
+    }
+
 
     useEffect(()=>{
         if(location.pathname==='/cart'){
             fetch("http://localhost:3000/api/v1/cart/getAllCartItems")
             .then(async function(res){
                 const data=await res.json();
-                setCartItem(data.allCartItems);
-                
+                setCartItem(data.allCartItems)
             })
         }
     },[location.pathname])
 
     useEffect(()=>{
-      setCartNumber(cartItem.length);
-      // console.log(cartNumber)
+      (cartItem.length);
     },[location.pathname,cartItem])
   
 
@@ -127,6 +126,7 @@ export function Cart(props) {
                               const data=await res.json();
                               setCartItem(data.allCartItems);
                               setCartNumber((prevState)=>(prevState-1));
+                              // setCartNum((prevState)=>(prevState-1));
                               toast.success("Item deleted from cart")
                             }else{
                               throw new error("Failed to remove from cart")
