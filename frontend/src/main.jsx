@@ -52,7 +52,7 @@ const router=createBrowserRouter([
         element:<SignUp></SignUp>
       },
       {
-        path:"/sellerDasboard",
+        path:"/adminDasboard",
         element:<AdminDasboard></AdminDasboard>
       }
     ]
