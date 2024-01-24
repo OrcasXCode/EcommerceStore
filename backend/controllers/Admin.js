@@ -17,12 +17,24 @@ async function getAllSellers(req, res) {
 
     const allSellerDetails = await User.find({
       userType: "Seller",
+      //jo already list mein h usko firse nhi dalna h
+      _id: { $nin: AdminDetails.allSellers },
     });
 
     //get all seller ids
     //note
     const sellerIds = allSellerDetails.map((seller) => seller._id);
-    console.log("All seller details ", allSellerDetails._id);
+    //get all seller IDs
+    sellerIds.forEach((id) => {
+      console.log("Seller ID:", id);
+    });
+
+    if (!allSellerDetails) {
+      return res.status(403).json({
+        succss: false,
+        msg: "Seller details not found",
+      });
+    }
 
     await User.findByIdAndUpdate(
       {
@@ -31,7 +43,8 @@ async function getAllSellers(req, res) {
       },
       {
         $push: {
-          allSellers: sellerIds,
+          //agar each nhi lagaya to pura seller ids ek element ban ke jayega
+          allSellers: { $each: sellerIds },
         },
       },
       { new: true }

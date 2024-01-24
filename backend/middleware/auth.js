@@ -58,6 +58,7 @@ exports.isSeller = async (req, res, next) => {
     });
   }
 };
+
 exports.isAdmin = async (req, res, next) => {
   try {
     const userType = await User.findOne({
@@ -78,6 +79,7 @@ exports.isAdmin = async (req, res, next) => {
     });
   }
 };
+
 exports.isUser = async (req, res, next) => {
   try {
     const userType = await User.findOne({
