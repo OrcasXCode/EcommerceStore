@@ -1,5 +1,42 @@
 const mongoose = require("mongoose");
 
+const ProductOnSaleSchema = new mongoose.Schema({
+  seller: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  productId: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  discount: {
+    type: Number,
+    required: true,
+  },
+  discountedPrice: {
+    type: Number,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+});
+
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -24,12 +61,7 @@ const UserSchema = new mongoose.Schema({
     enum: ["Admin", "Seller", "User"],
     required: true,
   },
-  productsOnSale: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "CreateItem",
-    },
-  ],
+  productsOnSale: [ProductOnSaleSchema],
   allSellers: [
     {
       type: mongoose.Schema.Types.ObjectId,

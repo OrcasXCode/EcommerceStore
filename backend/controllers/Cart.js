@@ -7,6 +7,7 @@ async function addNewProduct(req, res) {
     const SellerId = req.user._id;
     const productId = req.body.productId;
     const title = req.body.title;
+    const description = req.body.description;
     const price = req.body.price;
     const discount = req.body.discount;
     const discountedPrice = req.body.discountedPrice;
@@ -25,6 +26,7 @@ async function addNewProduct(req, res) {
       seller: sellerDetails._id,
       productId: productId,
       title: title,
+      description: description,
       price: price,
       discount: discount,
       discountedPrice: discountedPrice,
@@ -39,7 +41,7 @@ async function addNewProduct(req, res) {
       },
       {
         $push: {
-          productsOnSale: productDetails,
+          productsOnSale: createNewProduct,
         },
       },
       { new: true }
