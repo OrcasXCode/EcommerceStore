@@ -12,6 +12,7 @@ import { Cart } from './components/Cart/Cart.jsx'
 import { Login } from './components/Login/Login.jsx'
 import { SignUp } from './components/SignUp/SignUp.jsx'
 import { AdminDasboard } from './components/Dashboard/adminDasboard.jsx'
+import { SellerDashboard } from './components/Dashboard/sellerDashboard.jsx'
 
 const router=createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router=createBrowserRouter([
       {
         path:"/adminDasboard",
         element:<AdminDasboard></AdminDasboard>
+      },
+      {
+        path:"/sellerDasboard",
+        element:<SellerDashboard></SellerDashboard>
       }
     ]
   }

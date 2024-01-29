@@ -64,6 +64,8 @@ async function Login(req, res) {
     const userLogin = await User.findOne({
       email: email,
     });
+    console.log("User login", JSON.stringify(userLogin._id));
+    console.log("User login", userLogin.email);
     if (!userLogin) {
       return res.status(404).json({
         status: "false",
@@ -75,12 +77,18 @@ async function Login(req, res) {
 
     if (pass) {
       const token = jwt.sign(
-        { _id: userLogin._id, email: userLogin.email },
+        {
+          _id: userLogin._id.toString(),
+          email: userLogin.email,
+        },
         process.env.JWT_SECRET,
         { expiresIn: "24h" }
       );
+      // console.log(userLogin.id);
       userLogin.token = token;
       userLogin.password = undefined;
+      // userLogin._id = userLogin._id.toString();
+      // console.log(userLogin);
       res.status(200).json({
         status: "true",
         msg: "User login successfull",

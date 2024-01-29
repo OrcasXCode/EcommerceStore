@@ -5,13 +5,11 @@ dotenv.config();
 
 exports.auth = async (req, res, next) => {
   try {
-    const token =
-      req.cookies.token ||
-      req.body.token ||
-      req.header("Authorization").replace("Bearer ", "");
+    const token = req.headers.authorization;
+    const words = token.split(" ");
+    const jwttoken = words[1];
 
-    if (!token) {
-      console.log(error);
+    if (!jwttoken) {
       return res.status(404).json({
         success: false,
         msg: "Token not found",
@@ -19,34 +17,37 @@ exports.auth = async (req, res, next) => {
     }
 
     try {
-      //note:-
-      const decodedToken = await jwt.decode(token, process.env.JWT_SECRET);
-      // console.log("decoded token:", decodedToken);
+      const decodedToken = jwt.verify(jwttoken, process.env.JWT_SECRET);
+      console.log("Decoded Token:", decodedToken);
       req.user = decodedToken;
-      // console.log(req.user._id);
+      next();
     } catch (error) {
-      // console.log(error);
-      return res.status(401).json({
-        success: false,
-        msg: "Invalid Token!",
-      });
+      console.error("Token Verification Error:", error);
     }
-    next();
   } catch (error) {
-    console.log(error);
+    console.error(error); // Log the error for debugging purposes
     res.status(500).json({ message: "Server error" });
   }
 };
 
 exports.isSeller = async (req, res, next) => {
   try {
-    const userType = await User.findOne({
+    const userDetails = await User.findOne({
       email: req.user.email,
     });
-    if (userType.userType !== "Seller") {
+
+    if (!userDetails) {
+      console.log(userDetails);
       return res.status(401).json({
         success: false,
-        msg: "You are not a seller! this is protected route for seller only",
+        msg: "User not found",
+      });
+    }
+
+    if (userDetails.userType !== "Seller") {
+      return res.status(401).json({
+        success: false,
+        msg: "You are not a seller! This is a protected route for sellers only",
       });
     }
     next();
@@ -54,7 +55,7 @@ exports.isSeller = async (req, res, next) => {
     console.log(error);
     return res.status(500).json({
       success: false,
-      msg: "User role can't be found",
+      msg: "Error checking user role",
     });
   }
 };

@@ -90,6 +90,13 @@ export default function Header() {
                         >
                         
                             Dashboard
+                        </Link>
+                        <Link
+                            to="/sellerDasboard"
+                            className="hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                        >
+                        
+                            Seller Dashboard
                         </Link></div>:<div className="flex items-center lg:order-2">
                         <Link to="/cart" style={{position:'relative', marginRight:'20px'}}>
                             <img  src={Cart}  style={{height:'35px', marginLeft:'30px',position:'relative'}}></img>
