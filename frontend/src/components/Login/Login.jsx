@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import {toast,Toaster} from "react-hot-toast"
+import Cookies from 'js-cookie';
+
+ // Replace with the actual token
+// Cookies.set('token', token);
+// const token = '';
+
 
 export function Login() {
   const[email,setEmail]=useState("");
