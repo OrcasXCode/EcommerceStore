@@ -6,7 +6,7 @@ export function About() {
 
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="w-full py-12 md:py-24 lg:py-32 h-screen">
         <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
           <div className="space-y-3">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About Us</h1>
@@ -18,7 +18,7 @@ export function About() {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 lg:py-32 border-t">
+      <section className="w-full py-12 md:py-24 lg:py-32 border-t bg-slate-300">
         <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
           <div className="space-y-3">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Customer Testimonials</h2>
@@ -26,16 +26,16 @@ export function About() {
           <div className="mx-auto max-w-3xl grid gap-4 lg:grid-cols-2 lg:gap-8 mt-[20px]">
             <div className="space-y-2 mr-[20px]">
               <blockquote className="text-lg leading-8 text-gray-500 before-quotes/''">
-                The products are fantastic, and the customer service is exceptional. I highly recommend Acme Inc to
+                The products are fantastic, and the customer service is exceptional. I highly recommend Bazzar to
                 everyone.
-                <footer className="text-gray-500 dark:text-gray-400">— Emily Parker</footer>
+                <footer className="text-gray-500 dark:text-gray-400">— Peter Parker</footer>
               </blockquote>
             </div>
             <div className="space-y-2">
               <blockquote className="text-lg leading-8 text-gray-500 before-quotes/''">
-                I love the variety of products available at Acme Inc. The quality is top-notch, and the prices are great.
+                I love the variety of products available at Bazzar. The quality is top-notch, and the prices are great.
                 I'll definitely be shopping here again.
-                <footer className="text-gray-500 dark:text-gray-400">— Michael Johnson</footer>
+                <footer className="text-gray-500 dark:text-gray-400">— Thanos</footer>
               </blockquote>
             </div>
           </div>
