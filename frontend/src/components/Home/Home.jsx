@@ -34,224 +34,180 @@ export default function Home() {
   
 
   return (
-    <div className="w-full">
-          <div><Toaster/></div>
-      {/* Hero Section */}
-      <div className="relative w-full bg-white">
-        <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
-          <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
-            <div className="mt-8 flex max-w-max items-center space-x-2 rounded-full bg-gray-100 p-1">
-              <div className="rounded-full bg-white p-1 px-2">
-                <p className="text-sm font-medium">Start selling with us</p>
-              </div>
-              <p className="text-sm font-medium">Become a seller &rarr;</p>
-            </div>
-            <h1 className="mt-8 text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-6xl">
-            Grow your business with our e-commerce platform
-            </h1>
-            <p className="mt-8 text-lg text-gray-700">
-            Join our platform and connect with a vast audience. Sell your products easily and watch your business thrive.</p>
-            <form action="" className="mt-8 flex items-start space-x-2">
-              <div>
-                <input
-                  className="flex w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                  type="email"
-                  placeholder="Enter your email"
-                  id="email"
-                  onChange={(e)=>{setSellerEmail(e.target.value)}}
-                ></input>
-                <p className="mt-2 text-sm text-gray-500">We care about your privacy</p>
-              </div>
-              <div>
-                <button
-                  type="button"
-                  className="rounded-md bg-black px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                  onClick={()=>{
-                    fetch('http://localhost:3000/api/v1/register/AsSeller',{
-                            method:"POST",
-                            body:JSON.stringify({
-                              email:sellerEmail
-                            }),
-                            headers:{
-                              'Content-Type':'application/json'
-                            }
-                          })
-                          .then(async function(res){
-                            if(res.ok){
-                              // alert("login sucessfull")
-                              const data=await res.json();
-                              toast.success("Registered successfully")
-                            }
-                            else{
-                              throw new Error("Registering email Failed")
-                            }
-                          })
-                        .catch((error)=>{
-                          toast.success("Registering Email Failed")
-                        })
-                  }}
-                >
-                  Join Us
-                </button>
-              </div>
-            </form>
-          </div>
-          <div className="relative lg:col-span-5 lg:-mr-8 xl:col-span-6">
+
+<div class="flex flex-col min-h-[100dvh]">
+  <main class="flex-1">
+    <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+      <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6 lg:gap-10">
+        <div class="space-y-3">
+          <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+            Spring Fashion
+          </h1>
+          <p class="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            The latest trends in fashion. Find your style with our collection of spring essentials.
+          </p>
+        </div>
+        <img
+          src="https://images.pexels.com/photos/5558233/pexels-photo-5558233.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+          width="1270"
+          height="600"
+          alt="Hero"
+          class="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center"
+        />
+      </div>
+    </section>
+    <section class="w-full py-12 md:py-24 lg:py-32">
+      <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+        <div class="space-y-3">
+          <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">New Arrivals</h2>
+          <p class="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            Discover the latest in fashion. Shop the newest arrivals from top brands.
+          </p>
+        </div>
+        <div class="mx-auto grid max-w-5xl items-start gap-6 sm:grid-cols-2 md:gap-12 lg:max-w-none lg:grid-cols-3 xl:gap-16">
+          <div class="flex flex-col gap-1">
             <img
-              className="aspect-[3/2] bg-gray-50 object-cover lg:aspect-[4/3] lg:h-[700px] xl:aspect-[16/9]"
-              src="https://plus.unsplash.com/premium_photo-1679079456783-5d862f755557?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjQ3fHxtYW4lMjB3aXRoJTIwbGFwdG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
-              alt=""
+              src="https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F43%2F7f%2F437fd9e6fce85a924a7b1bb1eee6196e8523be93.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]"
+              width="400"
+              height="500"
+              alt="Image"
+              class="aspect-[4/5] overflow-hidden rounded-lg object-cover object-center"
+            />
+            <div class="space-y-1">
+              <h3 class="text-lg font-semibold">Blue Chambray Short Sleeve Shirt</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">$49.99</p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYfugg5dqnU_bCGgDjnwtqqpN_Y9gmX8cQZfPDW3gJEw&s"
+              width="400"
+              height="500"
+              alt="Image"
+              class="aspect-[4/5] overflow-hidden rounded-lg object-cover object-center"
+            />
+            <div class="space-y-1">
+              <h3 class="text-lg font-semibold">Striped Linen Blend Jumpsuit</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">$79.99</p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <img
+              src="https://emprall.com/cdn/shop/products/Untitleddesign_27.png?v=1673339053&width=700"
+              width="400"
+              height="500"
+              alt="Image"
+              class="aspect-[4/5] overflow-hidden rounded-lg object-cover object-center"
+            />
+            <div class="space-y-1">
+              <h3 class="text-lg font-semibold">Floral Print Maxi Dress</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">$64.99</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-100">
+      <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Summer Sale</h2>
+          <p class="mx-auto max-w-[600px] text-gray-800 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            Up to 50% off. Shop the best deals on summer fashion. Limited time only.
+          </p>
+        </div>
+        <div class="grid w-full grid-cols-2 md:grid-cols-4 items-center justify-center gap-4 md:gap-8">
+          <div class="mx-auto flex w-full items-center justify-center p-4 sm:p-8">
+            <img
+              src="data:image/webp;base64,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"
+              width="250"
+              height="125"
+              alt="Image"
+              class="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
+            />
+          </div>
+          <div class="mx-auto flex w-full items-center justify-center p-4 sm:p-8">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcrlTEOdubROUThbiSOZj1FvfAIuLOChsNhjxeEujuyg&s"
+              width="250"
+              height="125"
+              alt="Image"
+              class="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
+            />
+          </div>
+          <div class="mx-auto flex w-full items-center justify-center p-4 sm:p-8">
+            <img
+              src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR2PkB2pNU0j8MMWzQXrCQwBhQ-3_NmZtfkWg5nuaWSnHl4tgz_E7VPghIS0l6S2gOSB8HOkh-EMH3-wtLZtVB_Ef0HuLN2cHILAmNem0g_0mwOYEnk-YSR1ew&usqp=CAc"
+              width="250"
+              height="125"
+              alt="Image"
+              class="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
+            />
+          </div>
+          <div class="mx-auto flex w-full items-center justify-center p-4 sm:p-8">
+            <img
+              src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQPjHX5Kx-3L07BKDJJ6RwnPemvw2GFyMTlH_izSEZhRzGLOZcYlC99br32epFLmoZy2kFPO4L90EWPwJbjoyqd4hZT4cSGxyyPGNSuyinmnMetVcuF6-4RIw&usqp=CAc"
+              width="250"
+              height="125"
+              alt="Image"
+              class="aspect-[2/1] overflow-hidden rounded-lg object-contain object-center"
             />
           </div>
         </div>
       </div>
-      {/* Features Section */}
-      <div className="mx-auto my-32 max-w-7xl px-2 lg:px-8">
-        <div className="grid grid-cols-1 gap-y-8 text-center sm:grid-cols-2 sm:gap-12 lg:grid-cols-4">
-          <div>
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-blue-100">
-              <svg
-                className="h-9 w-9 text-blue-600"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"
-                />
-              </svg>
+    </section>
+    <section class="w-full py-12 md:py-24 lg:py-32">
+      <div class="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Summer Vibes</h2>
+          <p class="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+            Embrace the season with our collection of summer essentials. From beachwear to backyard BBQs, we've got
+            you covered.
+          </p>
+        </div>
+        <div class="mx-auto grid max-w-5xl items-start gap-6 sm:grid-cols-2 md:gap-12 lg:max-w-none lg:grid-cols-3 xl:gap-16">
+          <div class="flex flex-col gap-1">
+            <img
+              src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTEG6Fxd892azstnpe5bZ3SVylVwSWjIpeQTwvCn-kvnAhGwWQyONDHxIWJHf1lAZiK3EPKHfo1MpKWe1XD-HBkFisn_rOZEXxIlHmoLoyiQY0oI1hYuFB8bA&usqp=CAc"
+              width="400"
+              height="500"
+              alt="Image"
+              class="aspect-[4/5] overflow-hidden rounded-lg object-cover object-center"
+            />
+            <div class="space-y-1">
+              <h3 class="text-lg font-semibold">BOMBay Set</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">$49.99</p>
             </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">Secure Transactions</h3>
-            <p className="mt-4 text-sm text-gray-600">
-            Experience secured payments with our advanced transaction system. Your financial data is our priority.
-            </p>
           </div>
-          <div>
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-orange-100">
-              <svg
-                className="h-9 w-9 text-orange-600"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
+          <div class="flex flex-col gap-1">
+            <img
+              src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRCa8_p9fOflSPN768F-eb8xN1jmQ1yUGyVulRn9Kh5bwxnihP8tzzGH3wPi6pZT4uNWItzQXdNIeFCET7XqOTBheh8iVqHBODXJluWdu8X27x7mTQwRvnpyA&usqp=CAc"
+              width="400"
+              height="500"
+              alt="Image"
+              class="aspect-[4/5] overflow-hidden rounded-lg object-cover object-center"
+            />
+            <div class="space-y-1">
+              <h3 class="text-lg font-semibold">White Rib Knit</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">$79.99</p>
             </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">Global Reach, Seamless Experience</h3>
-            <p className="mt-4 text-sm text-gray-600">
-            Connect with customers worldwide! Our platform is designed for cross-country businesses, offering a seamless shopping experience with efficient global reach. Experience swift transactions and explore new markets effortlessly.
-            </p>
           </div>
-          <div>
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-              <img src={globe}></img>
+          <div class="flex flex-col gap-1">
+            <img
+              src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQh_-414oe-a4o1ymz-Df99m8pntxHSOxCI7sR0C4ZuDf0Y56fKuMc29fDD8TTGWLoXXJlAodgs9nghefDoFldNY-yKJJvgOlRg5NAZn01Ise5BxWsjbvuxks1g&usqp=CAc"
+              width="400"
+              height="500"
+              alt="Image"
+              class="aspect-[4/5] overflow-hidden rounded-lg object-cover object-center"
+            />
+            <div class="space-y-1">
+              <h3 class="text-lg font-semibold">Almode</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">$64.99</p>
             </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">Vast Scalability</h3>
-            <p className="mt-4 text-sm text-gray-600">
-              Reach and connect to huge audience to boost your business network 
-            </p>
-          </div>
-          <div>
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red-100">
-              <img src={offers}></img>
-            </div>
-            <h3 className="mt-8 text-lg font-semibold text-black">Great Offers</h3>
-            <p className="mt-4 text-sm text-gray-600">
-              Get great offers by joining as a member of the company
-            </p>
           </div>
         </div>
       </div>
-
-
-      {/* NewsLetter */}
-      <div className="mx-auto max-w-7xl bg-gray-50 px-2 py-10 lg:px-2">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-          <div className="w-full md:w-2/3 lg:w-1/2">
-            <h2 className="text-3xl font-bold text-black">Unlock Exclusive Benefits!</h2>
-            <p className="mt-4 text-gray-600">
-            Sign up for our newsletter to stay informed about the latest products, exclusive offers, and exciting announcements. Don't miss out on the benefits!
-            </p>
-            <div className="mt-4">
-              <p className="font-semibold text-gray-800">
-                Trusted by over 100,000+ businesses and individuals
-              </p>
-              <div className="mt-2 flex items-center">
-                <div className="flex space-x-1">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400" />
-                  ))}
-                </div>
-                <span className="ml-2 inline-block">
-                  <span className="text-sm font-semibold text-gray-800">4.8/5 . 3420 Reviews</span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 w-full md:w-2/3 lg:mt-0 lg:w-1/2">
-            <form className="flex lg:justify-center">
-              <div className="flex w-full max-w-md flex-col space-y-4">
-                <input
-                  className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                  type="email"
-                  placeholder="Email"
-                  onChange={(e)=>{
-                    setSellerEmail(e.target.value)
-                  }}
-                ></input>
-                <button
-                  type="button"
-                  className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                  onClick={()=>{
-                    fetch('http://localhost:3000/api/v1/register/AsSeller',{
-                            method:"POST",
-                            body:JSON.stringify({
-                              email:sellerEmail
-                            }),
-                            headers:{
-                              'Content-Type':'application/json'
-                            }
-                          })
-                          .then(async function(res){
-                            if(res.ok){
-                              // alert("login sucessfull")
-                              const data=await res.json();
-                              toast.success("Registered Successfully")
-                            }
-                            else{
-                              throw new Error("Registering email Failed")
-                            }
-                          })
-                        .catch((error)=>{
-                          toast.success("Registering Email Failed")
-                        })
-                  }}
-                >
-                  Subscribe Now
-                </button>
-              </div>
-            </form>
-            <p className="mt-2 lg:text-center">
-              <span className="text-sm text-gray-600">
-                By signing up, you agree to our terms of service and privacy policy.
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-
- 
-   
-    </div>
+    </section>
+  </main>
+</div>
   )
 }

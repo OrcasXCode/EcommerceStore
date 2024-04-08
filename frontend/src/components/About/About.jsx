@@ -1,227 +1,47 @@
-'use client'
-
-import React, { useState } from 'react'
-import { Menu, X, MapPin } from 'lucide-react'
-import {toast,Toaster} from "react-hot-toast"
-
-const menuItems = [
-  {
-    name: 'Home',
-    href: '#',
-  },
-  {
-    name: 'About',
-    href: '#',
-  },
-  {
-    name: 'Contact',
-    href: '#',
-  },
-]
-
-const locations = [
-  {
-    title: 'Bengaluru office',
-    timings: 'Mon-Sat 9am to 5pm.',
-    address: '100, Electronic City Phase-1, Bengaluru, Karnataka 560100 IN',
-  },
-  {
-    title: 'Head office',
-    timings: 'Mon-Sat 9am to 5pm.',
-    address: '12th Main Rd, Indiranagar, Bengaluru, Karnataka 560008 IN',
-  },
-  {
-    title: 'Karnataka office',
-    timings: 'Mon-Sat 9am to 5pm.',
-    address: '42, Residency Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560025 IN',
-  },
-]
-
-const users= [
-  {
-    name: 'Alexandra Simmons',
-    image:
-      'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    position: 'Founder & CEO',
-  },
-  {
-    name: 'Sophie Clark',
-    image:
-      'https://images.generated.photos/vBRCiI_3UM4l40sU8s7fCwbJwzDwRTGpebzPkfHFsY4/rs:fit:512:512/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODgyMTAyLmpwZw.jpg',
-    position: 'Chief Technology Officer',
-  },
-  {
-    name: 'Emma Stevens',
-    image:
-      'https://images.unsplash.com/photo-1549351512-c5e12b11e283?q=80&fm=jpg&crop=faces&fit=crop&h=600&w=600',
-    position: 'Marketing Lead',
-  },
-  {
-    name: 'Michael Baker',
-    image:
-      'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    position: 'Sales Manager',
-  },
-  {
-    name: 'Chris Robertson',
-    image:
-      'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&crop=faces&fit=crop&h=600&w=600',
-    position: 'Customer Support Specialist',
-  },
-  {
-    name: 'Daniel Turner',
-    image:
-      'https://images.pexels.com/photos/1181391/pexels-photo-1181391.jpeg?auto=compress&cs=tinysrgb&w=600',
-    position: 'Product Manager',
-  },
-  {
-    name: 'Olivia Davis',
-    image:
-      'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=600',
-    position: 'UI/UX Designer',
-  },
-]
+import React, { useState } from 'react';
 
 export function About() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-  const [sellerEmail,setSellerEmail]=useState("");
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [sellerEmail, setSellerEmail] = useState('');
 
   return (
-    <div>
-    
+    <>
+      <section className="w-full py-12 md:py-24 lg:py-32">
+        <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+          <div className="space-y-3">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About Us</h1>
+            <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              We are a team of passionate individuals dedicated to providing high-quality products to our customers. Our
+              mission is to make every purchase a delightful experience.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div className="mx-auto max-w-7xl px-4">
-        <div><Toaster/></div>
-        {/* Hero Map */}
-        <div className="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
-          <div className="max-w-max rounded-full border bg-gray-50 p-1 px-3">
-            <p className="text-xs font-semibold leading-normal md:text-sm">About the company</p>
+      <section className="w-full py-12 md:py-24 lg:py-32 border-t">
+        <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+          <div className="space-y-3">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Customer Testimonials</h2>
           </div>
-          <p className="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10">
-          Your Trusted E-commerce Partner
-          </p>
-          <p className="max-w-4xl text-base text-gray-600 md:text-xl">
-          Discover the story behind our commitment to providing top-quality products and excellent
-            service.
-          </p>
-        </div>
-        <div className="w-full space-y-4">
-          <img
-            className="h-[200px] w-full rounded-xl object-cover md:h-full"
-            src="https://dev-ui-image-assets.s3.ap-south-1.amazonaws.com/google-map.jpg"
-            alt=""
-          />
-        </div>
-        {/* locations */}
-        <div className="my-8 flex flex-col gap-y-6 md:flex-row lg:justify-around">
-          {locations.map((location) => (
-            <div key={location.title} className="flex flex-col space-y-3 md:w-2/4 lg:w-1/5">
-              <MapPin className="h-5 w-5" />
-              <p className="w-full text-xl font-semibold  text-gray-900">{location.title}</p>
-              <p className="w-full text-base text-gray-700">{location.timings}</p>
-              <p className="text-sm font-medium">{location.address}</p>
+          <div className="mx-auto max-w-3xl grid gap-4 lg:grid-cols-2 lg:gap-8 mt-[20px]">
+            <div className="space-y-2 mr-[20px]">
+              <blockquote className="text-lg leading-8 text-gray-500 before-quotes/''">
+                The products are fantastic, and the customer service is exceptional. I highly recommend Acme Inc to
+                everyone.
+                <footer className="text-gray-500 dark:text-gray-400">— Emily Parker</footer>
+              </blockquote>
             </div>
-          ))}
-        </div>
-        <hr className="mt-20" />
-        {/* greetings */}
-        <div className="mt-16 flex items-center">
-          <div className="space-y-6 md:w-3/4">
-            <div className="max-w-max rounded-full border bg-gray-50 p-1 px-3">
-              <p className="text-xs font-semibold leading-normal md:text-sm">Join Us &rarr;</p>
+            <div className="space-y-2">
+              <blockquote className="text-lg leading-8 text-gray-500 before-quotes/''">
+                I love the variety of products available at Acme Inc. The quality is top-notch, and the prices are great.
+                I'll definitely be shopping here again.
+                <footer className="text-gray-500 dark:text-gray-400">— Michael Johnson</footer>
+              </blockquote>
             </div>
-            <p className="text-3xl font-bold text-gray-900 md:text-4xl">Meet our team</p>
-            <p className="max-w-4xl text-base text-gray-700 md:text-xl">
-              Our philosophy is simple — hire a team of diverse, passionate people and foster a
-              culture that empowers you to do your best work.
-            </p>
-            <div></div>
           </div>
         </div>
-        {/* TEAM */}
-        <div className="grid grid-cols-1 gap-4 gap-y-6 border-b border-gray-300 py-12 pb-20 md:grid-cols-2 lg:grid-cols-4">
-          {users.map((user) => (
-            <div className="rounded-md border" key={user.name}>
-              <img
-                src={user.image}
-                alt={user.name}
-                className="h-[300px] w-full rounded-lg object-cover "
-              />
-              <p className="mt-6 w-full px-2 text-xl  font-semibold text-gray-900">{user.name}</p>
-              <p className="w-full px-2 pb-6 text-sm font-semibold text-gray-500">
-                {user.position}
-              </p>
-            </div>
-          ))}
-        </div>
-        {/* Hiring Banner */}
-        <div className="flex flex-col items-center gap-x-4 gap-y-4 py-16 md:flex-row">
-          <div className="space-y-6">
-            <p className="text-sm font-semibold md:text-base">Join our team &rarr;</p>
-            <p className="text-3xl font-bold md:text-4xl">We&apos;re Hiring</p>
-            <p className="text-base text-gray-600 md:text-lg">
-            If you've got the skills and passion, we invite you to join our team. We believe in fostering a culture that empowers you to do your best work
-            </p>
-             <form action="" className="mt-8 flex items-start space-x-2">
-              <div>
-                <input
-                  className="flex w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                  type="email"
-                  placeholder="Enter your email"
-                  id="email"
-                  onChange={(e)=>{setSellerEmail(e.target.value)}}
-                ></input>
-                <p className="mt-2 text-sm text-gray-500">We care about your privacy</p>
-              </div>
-              <div>
-                <button
-                  type="button"
-                  className="rounded-md bg-black px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                  onClick={()=>{
-                    fetch('http://localhost:3000/api/v1/register/AsEmployee',{
-                            method:"POST",
-                            body:JSON.stringify({
-                              email:sellerEmail
-                            }),
-                            headers:{
-                              'Content-Type':'application/json'
-                            }
-                          })
-                          .then(async function(res){
-                            if(res.ok){
-                              // alert("login sucessfull")
-                              const data=await res.json();
-                              toast.success("Registered successfully")
-                            }
-                            else{
-                              throw new Error("Registering email Failed")
-                            }
-                          })
-                        .catch((error)=>{
-                          toast.success("Registering Email Failed")
-                        })
-                  }}
-                >
-                  Join
-                </button>
-              </div>
-            </form>
-          </div>
-          <div className="md:mt-o mt-10 w-full">
-            <img
-              src="https://images.unsplash.com/photo-1605165566807-508fb529cf3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
-              alt="Getting Started"
-              className="rounded-lg"
-            />
-          </div>
-        </div>
-      </div>
-      <hr className="mt-6" />
-     
-    </div>
-  )
+      </section>
+
+    </>
+  );
 }
