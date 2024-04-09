@@ -7,20 +7,12 @@ import { cartAtomFamily } from '../store/atoms/cart'
 
 
 export default function Header() {
-    const [sellerLogin,setSellerLogin]=useState(true);
-    // const [cartNumber,setCartNumber]=useRecoilStateLoadable(cartAtomFamily());
+    useEffect(()=>{
+        const token=localStorage.getItem("token");
+        setSellerLogin(token);
+    },[])
+    const [sellerLogin,setSellerLogin]=useState("");
 
-    
-
-    // const cartData = cartNumber.contents ? cartNumber.contents.allCartItems.length : 0;
-    // if(cartNumber.state==="loading"){
-    //     return(
-    //         <div></div>
-    //     )
-    // }
-
-
-    // const cartData = cartNumber.contents.allCartItems.length;
     
     return (
         <header className="shadow sticky z-50 top-0">
@@ -84,7 +76,7 @@ export default function Header() {
                         </ul>
                     </div>
                     
-                    {sellerLogin ?<div className="flex items-center lg:order-2"> <Link
+                    {sellerLogin ? <div className="flex items-center lg:order-2"> <Link
                             to="/adminDasboard"
                             className="hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
                         >
@@ -119,7 +111,6 @@ export default function Header() {
                             Sign Up
                         </Link>
                     </div>}
-                    
                 </div>
             </nav>
         </header>
